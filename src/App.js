@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useEffect } from "react";
 import "./css/sidebar.css";
 import InputTextField from "./inputComponents/InputTextField";
@@ -7,6 +7,7 @@ import DropDownSelect from "./inputComponents/DropDownSelect";
 import CheckBoxField from "./inputComponents/CheckBoxField";
 import NumberField from "./inputComponents/numberField";
 
+
 function App() {
   const [value, setValue] = useState("");
   const [schema, setSchema] = useState("");
@@ -14,6 +15,7 @@ function App() {
   const [ContentVisible, setContentVisible] = useState(false);
   const [Data, setData] = useState("");
   const [input, setInput] = useState([""]);
+  const resultSection = useRef(null);
 
   function importAll(r) {
     let files = {};
@@ -40,7 +42,7 @@ function App() {
         const isJson = response.headers
           .get("content-type")
           ?.includes("application/json");
-        const data = isJson && (await response.json());
+        const data = isJson && (await response.json());    
       })
       .catch((error) => {
         this.setState({ errorMessage: error.toString() });
@@ -80,12 +82,13 @@ function App() {
       <input id="sidebar-toggle" type="checkbox" />
       <aside>
         <div>
-        <ul>
-        {Object.keys(files).map((key) => (
-          <li value={files[key].title} key={files[key].title}>
-            {files[key].title}
-            </li>))}
-        </ul>
+          <ul>
+            {Object.keys(files).map((key) => (
+              <li value={files[key].title} key={files[key].title}>
+                {files[key].title}
+              </li>
+            ))}
+          </ul>
         </div>
       </aside>
       <h1 id="select-header">Select Service Request</h1>
@@ -117,6 +120,7 @@ function App() {
           <p>
             <strong>Note:</strong> {Data.note}{" "}
           </p>
+          <h3>Input</h3>
           <form onSubmit={submitForm} class="type1">
             {Object.keys(input).map((form) => {
               if (input[form].input_type === "text") {
@@ -169,7 +173,9 @@ function App() {
                 );
               }
             })}
-            <button type="submit">Generate schema</button>
+            <button id="submit" type="submit">
+              Generate schema
+            </button>
           </form>
           <h3>Output</h3>
           {Object.values(Data.output).map((value) => {
@@ -181,17 +187,20 @@ function App() {
               <h3>Result</h3>
               Copy json and attach when sending request to platform team
               <pre>
-                <div>
+                <button
+                  id="copy"
+                  onClick={() =>
+                    navigator.clipboard.writeText(
+                      JSON.stringify(schema, null, 2)
+                    )
+                  }
+                >
+                  Copy
+                </button>
+                <div ref={resultSection}>
                   <PrettyPrint jsonObj={schema} />
                 </div>
               </pre>
-              <button
-                onClick={() =>
-                  navigator.clipboard.writeText(JSON.stringify(schema, null, 2))
-                }
-              >
-                Copy
-              </button>
             </div>
           )}
         </div>

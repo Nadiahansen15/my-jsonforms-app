@@ -1,21 +1,46 @@
-button {
+#submit {
+
+    /* remove default behavior */
+    appearance: none;
+    -webkit-appearance: none;
+
+    border: none;
+    border-radius: 5px;
+    background-color: #f05027;
+    color: #fff; /* font color */
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 100%;
+    width: 100%;
+    padding:10px;
+    margin-bottom: 10px; 
+
+}
+
+#copy {
 
     /* remove default behavior */
     appearance: none;
     -webkit-appearance: none;
 
     /* usual styles */
-    padding: 10px;
     border: none;
     background-color: #f05027;
-    color: #fff;
+    color: #fff; /* font color */
     font-weight: 600;
+    float: right;
+    padding: 10px;
     border-radius: 5px;
-    width: 80%;
+    right: 0px;
 
 }
 
-button,
+#copy:hover, #submit:hover {
+    background-color: #be2702;
+    color: white;
+  }
+
+
 input,
 select,
 textarea {
