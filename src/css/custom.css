@@ -1,0 +1,74 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #f05027;
+  --ifm-color-primary-dark: #481ba2;
+  --ifm-color-primary-darker: #441999;
+  --ifm-color-primary-darkest: #38157e;
+  --ifm-color-primary-light: #d916c6;
+  --ifm-color-primary-lighter: #e317cf;
+  --ifm-color-primary-lightest: #ea30d8;
+  --ifm-code-font-size: 95%;
+  --doc-sidebar-width: 400px !important;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+/* Bullet point marker in lists */
+::marker {
+  color: #f05027;
+}
+
+.menu, .navbar-sidebar {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.hero--primary {
+  --ifm-hero-background-color: rgb(240,80,39);
+  background: linear-gradient(90deg, rgba(240,80,39,1) 0%, rgba(197,20,170,1) 100%);
+}
+
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme='dark'] .features_xdhU {
+   color: #fff;
+}
+
+html[data-theme='dark'] .hero__title {
+  color: #fff;
+}
+
+html[data-theme='dark'] .hero__subtitle {
+  color: #fff;
+}
+
+html[data-theme='dark'] .featureSvg__8YW {
+  filter: invert(100%);
+}
+
+html[data-theme='dark'] .medium-zoom-image {
+  filter: invert(100%);
+}
+
+img[src*="#width400"] {
+  width:400px;
+  float: right;
+  margin: 40px;
+}
+
+#select-header {
+  margin-top: 30px;
+}

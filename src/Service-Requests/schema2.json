@@ -1,0 +1,54 @@
+{  
+    "title": "Decommissioning of landing zone",
+    "description": "Workloads, landing zones and projects are often used interchangeably. However, a workload (the actual services and resources such as VMs, databases etc.) is contained within a landing zone. A landing zone (the subscription containing the services and resources) is deployed through a DevOps project.",
+    "AuthorizationScope": "Landing Zone governance responsible",
+    "requestType": "Service request",
+    "Complexity": "high",
+    "note": "Before deleting a landing zone (the subscriptions and their content) it is important to know whether any data should be backed up. Are there any databases, recovery vaults etc. that might be needed at some point? If so, where should these resources be moved to and who should have access to them?",
+    "Input": [
+        {
+        "placeholder": "Landing Zone Name", 
+        "name": "Landing Zone Name", 
+        "input_type": "text", 
+        "required": true
+        },
+        {
+        "placeholder": "Decommission date of execution ex. 2021-11-28", 
+        "name": "Decommission date of execution", 
+        "input_type": "text", 
+        "required": true
+        },
+        {
+        "placeholder": "Azure DevOps Project", 
+        "name": "Azure DevOps Project", 
+        "input_type": "text", 
+        "required": true
+        },
+        {
+        "placeholder": "Retention period", 
+        "name": "Retention period", 
+        "input_type": "text", 
+        "required": true
+        },
+        {
+        "placeholder": "DevOps project retention period in months ex. 12", 
+        "name": "DevOps project retention period", 
+        "input_type": "number", 
+        "required": true
+        }
+    ],
+    "endpoint": 
+        {
+            "url": "http://localhost:3004/Lz-To-docs/",
+            "method": "POST",
+            "headers": { 
+                "Content-Type": "application/json"
+            }
+        },
+    "output": [
+        "The landing zone subscriptions are now positioned in the 'Decommissioned' management group.",
+        "The DevOps project has been renamed.",
+        "App registrations have been deleted.",
+        "Connectivity has been cleaned up (Firewall rules, peerings, and IP range reservation)"
+    ]
+}

@@ -1,0 +1,26 @@
+#sidebar-toggle {
+    display: none;
+  }
+  
+  .toggle-btn {
+    display: none;
+    width: 4em;
+    height: 2em;
+    position: relative;
+    cursor: pointer;
+    background: yellow;
+    padding: 2px;
+  }
+  
+  @media(max-width:1200px) {
+    .toggle-btn {
+      display: block;
+    }
+    aside {
+      width: 0vw;
+      transition: width 0.25s ease-out;
+    }
+    #sidebar-toggle:checked+aside {
+      width: 20vw;
+    }
+  }
