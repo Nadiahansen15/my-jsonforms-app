@@ -24,8 +24,8 @@
             "required": true
         },
         {
-            "placeholder": "email",
-            "name": "email",
+            "placeholder": "text",
+            "name": "text",
             "input_type": "text",
             "required": true
         },
@@ -48,18 +48,32 @@
             "required": true,
             "array_inputs": [
                 {
-                    "placeholder": "fullname",
                     "name": "fullname",
-                    "input_type": "text",
-                    "required": true
+                    "type": "text"
                 },
                 {
-                    "placeholder": "email",
                     "name": "email",
-                    "input_type": "text",
-                    "required": true
+                    "type": "text"
                 }
             ]
+        },
+        {
+            "placeholder": "date",
+            "name": "date",
+            "input_type": "date",
+            "required": true
+        },
+        {
+            "placeholder": "email",
+            "name": "email",
+            "input_type": "email",
+            "required": true
+        },
+        {
+            "placeholder": "audit2",
+            "name": "audit2",
+            "input_type": "checkbox",
+            "required": true
         }
     ],
     "endpoint": {

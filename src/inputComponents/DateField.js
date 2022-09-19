@@ -1,11 +1,11 @@
 import React from "react";
 import "../css/Service-Request.css";
 
-const InputTextField = ({ name, placeholder, required, handleChange }) => (
+const DateField = ({ name, placeholder, required, handleChange }) => (
   <div class="input-div">
     <label>{name}</label>
     <input
-      type="text"
+      type="date"
       name={name}
       required={required}
       autoComplete="off"
@@ -15,4 +15,4 @@ const InputTextField = ({ name, placeholder, required, handleChange }) => (
   </div>
 );
 
-export default InputTextField;
+export default DateField;

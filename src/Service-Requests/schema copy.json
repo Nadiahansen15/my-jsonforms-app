@@ -1,0 +1,38 @@
+{
+    "title": "test",
+    "description": "All service requests must be sent by email to [Service Desk](mailto:ticket@fellowmind.dk) or created directly in [Jira](https://ticket.fellowmind.dk/?id=FES).",
+    "AuthorizationScope": "Business",
+    "requestType": "Service request",
+    "Complexity": "Low",
+    "note": "The repositories included in [Input](#input) must each have a `docs/` folder, containing the documentation included.",
+    "Input": [
+        
+        {
+            "placeholder": "DevOps project admins",
+            "name": "DevOps project admins",
+            "input_type": "array",
+            "required": true,
+            "array_inputs": [
+                {
+                    "name": "fullname",
+                    "type": "text"
+                },
+                {
+                    "name": "email",
+                    "type": "text"
+                }
+            ]
+        }
+    ],
+    "endpoint": {
+        "url": "http://localhost:3004/Lz-To-docs/",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    },
+    "output": [
+        "Confirmation from Service Desk when the request is processed",
+        "Inclusion of the documentation on this site"
+    ]
+}

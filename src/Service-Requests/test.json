@@ -1,0 +1,75 @@
+{
+  "title": "Add Landing Zone to Dte",
+  "description": "All service requests must be sent by email to [Service Desk](mailto:ticket@fellowmind.dk) or created directly in [Jira](https://ticket.fellowmind.dk/?id=FES).",
+  "AuthorizationScope": "Business",
+  "requestType": "Service request",
+  "Complexity": "Low",
+  "price": "??",
+  "note": "The repositories included in [Input](#input) must each have a `docs/` folder, containing the documentation included.",
+  "Input": [
+    {
+      "placeholder": "Azure DevOps Project Name",
+      "name": "Azure DevOps Project Name",
+      "input_type": "dropdown",
+      "required": true,
+      "values": [
+        "Padocop",
+        "fes",
+        "cloud platform"
+      ]
+    },
+    {
+      "placeholder": "List of repositories to pull documentation from - comma-separated values ",
+      "name": "List of repositories to pull documentation from",
+      "input_type": "big_text",
+      "required": true
+    },
+    {
+      "placeholder": "text",
+      "name": "text",
+      "input_type": "text",
+      "required": true
+    },
+    {
+      "placeholder": "Prefered time to call you",
+      "name": "contact_time",
+      "input_type": "text",
+      "required": true
+    },
+    {
+      "placeholder": "age",
+      "name": "age",
+      "input_type": "number",
+      "required": true
+    },
+    {
+      "placeholder": "date",
+      "name": "date",
+      "input_type": "date",
+      "required": true
+    },
+    {
+      "placeholder": "email",
+      "name": "email",
+      "input_type": "email",
+      "required": true
+    },
+    {
+      "placeholder": "audit2",
+      "name": "audit2",
+      "input_type": "checkbox",
+      "required": true
+    }
+  ],
+  "endpoint": {
+    "url": "http://localhost:3004/Lz-To-docs/",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  },
+  "output": [
+    "Confirmation from Service Desk when the request is processed",
+    "Inclusion of the documentation on this site"
+  ]
+}

@@ -2,7 +2,8 @@ import React from "react";
 import "../css/Service-Request.css";
 
 const numberField = ({name, placeholder, required, handleChange}) => (
-    <div>
+    <div class="input-div">
+    <label>{name}</label>
     <input 
     type="number"
     name={name}

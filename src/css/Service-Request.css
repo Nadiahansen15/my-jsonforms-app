@@ -7,13 +7,14 @@
     border: none;
     border-radius: 5px;
     background-color: #f05027;
-    color: #fff; /* font color */
+    color: #fff;
+    /* font color */
     font-weight: 600;
     font-family: inherit;
     font-size: 100%;
-    width: 100%;
-    padding:10px;
-    margin-bottom: 10px; 
+    width: 102%;
+    padding: 10px;
+    margin-bottom: 10px;
 
 }
 
@@ -26,7 +27,8 @@
     /* usual styles */
     border: none;
     background-color: #f05027;
-    color: #fff; /* font color */
+    color: #fff;
+    /* font color */
     font-weight: 600;
     float: right;
     padding: 10px;
@@ -35,10 +37,11 @@
 
 }
 
-#copy:hover, #submit:hover {
+#copy:hover,
+#submit:hover {
     background-color: #be2702;
     color: white;
-  }
+}
 
 
 input,
@@ -46,17 +49,73 @@ select,
 textarea {
     font-family: inherit;
     font-size: 100%;
-        width: 100%;
-        padding:10px;
-        margin-bottom: 10px; 
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox" ] {
+    width: auto;
 }
 
 form {
     box-sizing: border-box;
-    padding: 2rem;
+    padding: 4rem;
     border-radius: 1rem;
     background-color: hsl(0, 0%, 100%);
     border: 4px solid hsl(0, 0%, 90%);
     display: grid;
     width: 100%;
-    }
+}
+
+.page-wrapper {
+    margin:0 auto; /* this will center the page */
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 3;
+    padding: 20px;
+    
+}
+
+.double-column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 7;
+    padding: 20px;
+}
+
+.side-column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 2;
+}
+
+.list-item {
+    padding: 5px;
+    margin: 0px;
+    font-weight: 500;
+    color: #606770;
+}
+
+.list-item:hover, .list-item:focus, .list-item.selected {
+    color: #f05027;
+    background-color: #0000000d;
+    padding: 5px;
+}
+
+label {
+    display:block;
+}

@@ -2,7 +2,8 @@ import React from "react";
 import "../css/Service-Request.css";
 
 const TextAreaField = ({name, placeholder, required, handleChange}) => (
-    <div>
+    <div class="input-div">
+    <label>{name}</label>
     <textarea 
     type="text"
     name={name}
