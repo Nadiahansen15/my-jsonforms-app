@@ -9,7 +9,6 @@ import NumberField from "./inputComponents/numberField";
 import ArrayField from "./inputComponents/ArrayField";
 import EmailField from "./inputComponents/EmailField";
 import DateField from "./inputComponents/DateField";
-import Array from "./inputComponents/Formtest";
 
 function App(values) {
   const [value, setValue] = useState("");
