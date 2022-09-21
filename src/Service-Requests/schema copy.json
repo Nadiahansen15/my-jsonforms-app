@@ -8,20 +8,10 @@
     "Input": [
         
         {
-            "placeholder": "DevOps project admins",
+            "placeholder": "DevOps project admin",
             "name": "DevOps project admins",
             "input_type": "array",
-            "required": true,
-            "array_inputs": [
-                {
-                    "name": "fullname",
-                    "type": "text"
-                },
-                {
-                    "name": "email",
-                    "type": "text"
-                }
-            ]
+            "required": true
         }
     ],
     "endpoint": {

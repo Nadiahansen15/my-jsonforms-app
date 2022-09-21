@@ -9,8 +9,9 @@ import NumberField from "./inputComponents/numberField";
 import ArrayField from "./inputComponents/ArrayField";
 import EmailField from "./inputComponents/EmailField";
 import DateField from "./inputComponents/DateField";
+import Array from "./inputComponents/Formtest";
 
-function App() {
+function App(values) {
   const [value, setValue] = useState("");
   const [schema, setSchema] = useState("");
   const [choice, setChoice] = useState("");
@@ -32,27 +33,12 @@ function App() {
     require.context("./Service-Requests/", true, /\.json$/)
   );
 
-  const [inputFields, setInputFields] = useState([]);
-
-
-  
-  const handleClick = (inputs) => {
-    
-    let newField = [{}];
-    inputs.map((input) =>
-    newField.map((object) => {
-        let fieldname = input.name;
-
-        object[fieldname] = "";
-      })
-    );
-    setInputFields([...inputFields, newField[0]]);
-  };
-
   function submitForm(event) {
     event.preventDefault();
+    setValue({...value, values})
     console.log(value); // Do what ever you want to do with data
     setSchema(value);
+    console.log("hey" + values)
     /*fetch(`${" http://localhost:3004/Lz-To-docs"}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -70,13 +56,16 @@ function App() {
       });*/
   }
 
-  const handleChange = (event) => {
-    console.log(event.currentTarget.name, event.currentTarget.value)
+  const handleChange = (event, formType) => {
+    if (formType === "array") {
+      setValue({ ...value, [event.currentTarget.name]: [event.currentTarget.value]})
+      console.log(value);
+  } else {
     const inputs =
     event.currentTarget.type === "checkbox" ? event.currentTarget.checked : event.currentTarget.value
     setValue({ ...value, [event.currentTarget.name]: inputs });
     console.log(value);
-  };
+  };}
 
   function PrettyPrint(props) {
     return <pre>{JSON.stringify(props.jsonObj, null, 2)}</pre>;
@@ -219,7 +208,6 @@ function App() {
                     );
                   }
                   if (input[form].input_type === "array") {
-                 {/*   {()=> handleArrayInput(input[form].array_inputs)} */}
                     return (
                       <div>
                       <ArrayField
@@ -227,10 +215,8 @@ function App() {
                         placeholder={input[form].placeholder}
                         required={input[form].required}
                         key={input[form].placeholder}
-                        inputs={inputFields}
-                        //handleChange={handleChange}
+                        handleChange={(event) => handleChange(event, input[form].input_type)}
                       />
-                     <button onClick={()=>handleClick(input[form].array_inputs)}> + </button>
                     </div>
                     );
                   }
