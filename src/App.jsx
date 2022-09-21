@@ -9,8 +9,9 @@ import NumberField from "./inputComponents/numberField";
 import ArrayField from "./inputComponents/ArrayField";
 import EmailField from "./inputComponents/EmailField";
 import DateField from "./inputComponents/DateField";
+import Array from "./inputComponents/Array"
 
-function App(values) {
+function App() {
   const [value, setValue] = useState("");
   const [schema, setSchema] = useState("");
   const [choice, setChoice] = useState("");
@@ -18,7 +19,6 @@ function App(values) {
   const [Data, setData] = useState("");
   const [input, setInput] = useState([""]);
   const resultSection = useRef(null);
-  
 
   function importAll(r) {
     let files = {};
@@ -34,37 +34,44 @@ function App(values) {
 
   function submitForm(event) {
     event.preventDefault();
-    setValue({...value, values})
-    console.log(value); // Do what ever you want to do with data
+    setValue({ ...value })
+    console.log(value);
     setSchema(value);
-    console.log("hey" + values)
-    /*fetch(`${" http://localhost:3004/Lz-To-docs"}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(value),
-    })
-      .then(async (response) => {
-        const isJson = response.headers
-          .get("content-type")
-          ?.includes("application/json");
-        const data = isJson && (await response.json());
-      })
-      .catch((error) => {
-        this.setState({ errorMessage: error.toString() });
-        console.error("There was an error!", error);
-      });*/
   }
 
-  const handleChange = (event, formType) => {
-    if (formType === "array") {
-      setValue({ ...value, [event.currentTarget.name]: [event.currentTarget.value]})
+  // HANDLE ARRAY AND OTHER INPUTS
+  const handleChange = (event, input_type) => {
+    event.preventDefault();
+    // UPDATE ARRAY / HANDLE CHANGE
+    if (input_type === "array") {
+      //let vals = [...value.event.target.name];
+      let vals = [...value.DevOps];
+      vals[this] = event.target.value;
+      setValue({ DevOps: vals });
+      //setValue({ ...value, [event.currentTarget.name]: vals })
       console.log(value);
-  } else {
-    const inputs =
-    event.currentTarget.type === "checkbox" ? event.currentTarget.checked : event.currentTarget.value
-    setValue({ ...value, [event.currentTarget.name]: inputs });
-    console.log(value);
-  };}
+    } else {
+      const inputs =
+        event.currentTarget.type === "checkbox" ? event.currentTarget.checked : event.currentTarget.value
+      setValue({ ...value, [event.currentTarget.name]: inputs });
+      console.log(value);
+    };
+  }
+    // REMOVE FROM ARRAY
+  const removeClick = (event) => {
+    //let vals = [...value.(event.target.name))];
+    let vals = [...value.DevOps];
+    let index = Number(event.target.id);
+    vals.splice(index, 1);
+    // setValue({ event.target.name: vals });
+    setValue({ DevOps: vals });
+  };
+
+    // ADD TO ARRAY
+  const addClick = (event) => {
+    //setValue({ event.target.name: [...value.(event.target.name)), ""] });
+    setValue({ DevOps: [...value.DevOps, ""] });
+  };
 
   function PrettyPrint(props) {
     return <pre>{JSON.stringify(props.jsonObj, null, 2)}</pre>;
@@ -76,11 +83,24 @@ function App(values) {
       if (files[key].title === title) {
         setData(files[key]);
         setInput(files[key].Input);
+        setValue("")
+        // ADD ARRAYS FROM BEGINNING
+        {
+          Object.values(files[key].Input).map((form) => {
+            console.log(form.input_type)
+            if (form.input_type === "array") {
+              if (!(Object.keys(value).includes(form.name))) {
+                setValue({ ...value, [form.name]: [""] })
+                console.log(value)
+              }
+            }
+          }
+          )
+        }
       }
     });
     setChoice(title);
     setSchema("");
-    setValue("");
   };
 
   useEffect(() => {
@@ -206,25 +226,54 @@ function App(values) {
                       />
                     );
                   }
-                  if (input[form].input_type === "array") {
+                  if (input[form].input_type === "arrauy") {
+                    if (!(Object.keys(value).includes(input[form].name))) {
+                      setValue({ ...value, [input[form].name]: [] })
+                    }
                     return (
                       <div>
-                      <ArrayField
-                        name={input[form].name}
-                        placeholder={input[form].placeholder}
-                        required={input[form].required}
-                        key={input[form].placeholder}
-                        handleChange={(event) => handleChange(event, input[form].input_type)}
-                      />
-                    </div>
+                        <ArrayField
+                          name={input[form].name}
+                          placeholder={input[form].placeholder}
+                          required={input[form].required}
+                          key={input[form].placeholder}
+                          handleChange={(event) => handleChange(event, input[form].input_type)}
+                        />
+                      </div>
+                    );
+                  }
+                  if (input[form].input_type === "array") {
+                    // if (!(Object.keys(value).includes(input[form].name) )) {
+                    //   setValue({...value, [input[form].name]: [""]})
+                    //  }
+                    return (
+                      <div>
+                        <label>{input[form].name}</label>
+                        {/*value.(input[form].name).map((el, i) => ( */ }
+                        {value.DevOps.map((el, i) => (
+                          <div key={i}>
+                          <Array
+                            name={input[form].name}
+                            placeholder={input[form].placeholder}
+                            required={input[form].required}
+                            key={input[form].placeholder}
+                            el={el}
+                            i={i}
+                            handleChange={(event) => handleChange(event, input[form].input_type)}
+                            removeClick={removeClick.bind(i)}
+                          />
+                          </div>
+                        ))}
+                        <input type="button" value="add more" onClick={(event) => addClick(event)} />
+                      </div>
                     );
                   }
                 })}
                 <button id="submit" type="submit">
-                Generate schema
+                  Generate schema
                 </button>
                 {schema && (
-                <p class="message">Schema generated!</p>)}
+                  <p class="message">Schema generated!</p>)}
               </form>
               <h3>Output</h3>
               {Object.values(Data.output).map((value) => {
@@ -255,7 +304,7 @@ function App(values) {
             </div>
           )}
         </div>
-        <div class='side-column'/>
+        <div class='side-column' />
       </div>
     </div>
   );

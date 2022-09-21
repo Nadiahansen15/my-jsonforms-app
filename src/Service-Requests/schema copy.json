@@ -6,11 +6,16 @@
     "Complexity": "Low",
     "note": "The repositories included in [Input](#input) must each have a `docs/` folder, containing the documentation included.",
     "Input": [
-        
         {
-            "placeholder": "DevOps project admin",
-            "name": "DevOps project admins",
+            "placeholder": "DevOps",
+            "name": "DevOps",
             "input_type": "array",
+            "required": true
+        },
+        {
+            "placeholder": "text",
+            "name": "texttt",
+            "input_type": "text",
             "required": true
         }
     ],

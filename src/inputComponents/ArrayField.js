@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/Service-Request.css";
 import App from "../App"
 
-const ArrayField = ({ name, placeholder, required, handleChange }) => {
+const ArrayField = ({ name, placeholder, required, handleChange, array }) => {
   const [values, setValues] = useState({ val: [] });
 
   const removeClick = (event) => {
@@ -18,10 +18,6 @@ const ArrayField = ({ name, placeholder, required, handleChange }) => {
     vals[this] = event.target.value;
     setValues({ val: vals });
     console.log(values)
-
-    return (
-      <App values={values}> </App>
-    )
   }
 
   const addClick = () => {
@@ -49,7 +45,7 @@ const ArrayField = ({ name, placeholder, required, handleChange }) => {
           />
         </div>
       ))}
-      <input type="button" value="add more" onClick={addClick} />
+      <input type="button" value="add moree" onClick={addClick} />
     </div>
   );
 };
